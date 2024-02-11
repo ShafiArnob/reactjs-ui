@@ -2,7 +2,8 @@ import { getSingleUser } from "@/api/user";
 import Container from "@/components/Container";
 import { User } from "@/types/user";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 const UserPage = () => {
   const { id } = useParams();
@@ -24,8 +25,19 @@ const UserPage = () => {
 
   return (
     <Container>
-      <div className="flex h-screen w-full justify-center items-center">
-        <div className="flex border-2 rounded-2xl p-2 w-2/3 gap-4 border-purple-500">
+      <div className="flex flex-col h-screen w-full items-center mt-8">
+        <div className="p-2 w-2/3">
+          <div className="w-[70px]">
+            <Link
+              to="/"
+              className="flex items-center gap-2 text-lg font-medium text-zinc-400 transition duration-300  hover:text-purple-600 transform hover:-translate-x-2"
+            >
+              <IoArrowBackOutline className="" />
+              <p className="">back</p>
+            </Link>
+          </div>
+        </div>
+        <div className="flex border-2 rounded-2xl p-2 w-2/3 gap-4 border-purple-300">
           <div className="bg-purple-100 rounded-2xl p-2">
             <img src={user?.image} alt="user" className="mb-1" />
           </div>
