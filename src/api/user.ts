@@ -5,7 +5,7 @@ export const getAllUsers = async () => {
       throw new Error("Failed to fetch data");
     }
     const data = await response.json();
-    return data;
+    return data?.users;
   } catch (error) {
     console.error("Error fetching data:", error);
     return null;
