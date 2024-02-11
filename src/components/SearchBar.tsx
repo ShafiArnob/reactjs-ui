@@ -10,7 +10,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ setSearchInput }) => {
   };
 
   return (
-    <div className="my-4 p-4 w-1/3">
+    <div className=" w-1/3">
       <Input
         className="border-2 focus-visible:border-purple-500"
         onChange={(e) => handleInput(e.target.value)}
