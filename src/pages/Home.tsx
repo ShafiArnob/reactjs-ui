@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 const Home = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [searchInput, setSearchInput] = useState("");
-  const [sortSelectInput, setSortSelectInput] = useState("");
+  const [sortSelectInput, setSortSelectInput] = useState("name");
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -36,6 +36,27 @@ const Home = () => {
             } else {
               return true;
             }
+          })
+          .sort((a, b) => {
+            let fieldA, fieldB;
+            if (sortSelectInput === "name") {
+              fieldA = `${a.firstName} ${a.lastName}`.toLowerCase();
+              fieldB = `${b.firstName} ${b.lastName}`.toLowerCase();
+            } else if (sortSelectInput === "email") {
+              fieldA = a.email.toLowerCase();
+              fieldB = b.email.toLowerCase();
+            } else if (sortSelectInput === "company") {
+              fieldA = a.company.name.toLowerCase();
+              fieldB = b.company.name.toLowerCase();
+            } else {
+              // Default
+              fieldA = `${a.firstName} ${a.lastName}`.toLowerCase();
+              fieldB = `${a.firstName} ${a.lastName}`.toLowerCase();
+            }
+            // Compare the two fields and return the result
+            if (fieldA < fieldB) return -1;
+            if (fieldA > fieldB) return 1;
+            return 0;
           })
           .map((user) => (
             <UserCard key={user.id} user={user} />
