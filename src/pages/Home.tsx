@@ -14,7 +14,7 @@ const Home = () => {
     };
     fetchUsers();
   }, []);
-  console.log(users);
+  // console.log(users);
 
   return (
     <Container>
