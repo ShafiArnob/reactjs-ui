@@ -1,4 +1,5 @@
 import { getAllUsers } from "@/api/user";
+import Container from "@/components/Container";
 import { useEffect, useState } from "react";
 
 const Home = () => {
@@ -13,7 +14,7 @@ const Home = () => {
   }, []);
   console.log(users);
 
-  return <div>Home</div>;
+  return <Container>Home</Container>;
 };
 
 export default Home;
