@@ -32,7 +32,7 @@ const Home = () => {
 
   return (
     <Container>
-      <div className="flex justify-center my-1 mt-2 p-4 space-x-3 ">
+      <div className="flex justify-center mt-2 p-4 space-x-3 ">
         <SearchBar setSearchInput={setSearchInput} />
         <SortUsersSelect setSortSelectInput={setSortSelectInput} />
         <AddUserBtn setShowUserForm={setShowUserForm} />
