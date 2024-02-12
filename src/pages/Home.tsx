@@ -38,7 +38,7 @@ const Home = () => {
         <div className="min-w-[320px] sm:2/4 md:w-1/3">
           <SearchBar setSearchInput={setSearchInput} />
         </div>
-        <div className="flex justify-between mt-2 md:justify-center min-w-[320px] space-x-4 ">
+        <div className="flex justify-between mt-2 md:mt-0 md:justify-center min-w-[320px] space-x-4 ">
           <SortUsersSelect setSortSelectInput={setSortSelectInput} />
           <AddUserBtn setShowUserForm={setShowUserForm} />
         </div>
