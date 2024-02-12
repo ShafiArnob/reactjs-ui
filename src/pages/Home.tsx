@@ -1,4 +1,5 @@
 import { getAllUsers } from "@/api/user";
+import AddUserBtn from "@/components/AddUserBtn";
 import Container from "@/components/Container";
 import SearchBar from "@/components/SearchBar";
 import { SortUsersSelect } from "@/components/SortUsersSelect";
@@ -25,6 +26,7 @@ const Home = () => {
       <div className="flex justify-center my-4 p-4 space-x-3">
         <SearchBar setSearchInput={setSearchInput} />
         <SortUsersSelect setSortSelectInput={setSortSelectInput} />
+        <AddUserBtn />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 ">
         {users
