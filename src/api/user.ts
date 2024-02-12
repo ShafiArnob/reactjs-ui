@@ -1,7 +1,7 @@
 export const getAllUsers = async () => {
   try {
     const response = await fetch("https://dummyjson.com/users");
-    if (!response.ok) {
+    if (!response) {
       throw new Error("Failed to fetch data");
     }
     const data = await response.json();
@@ -15,7 +15,7 @@ export const getAllUsers = async () => {
 export const getSingleUser = async (userId: string) => {
   try {
     const response = await fetch(`https://dummyjson.com/users/${userId}`);
-    if (!response.ok) {
+    if (!response) {
       throw new Error("Failed to fetch data");
     }
     const data = await response.json();

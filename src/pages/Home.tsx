@@ -13,11 +13,16 @@ const Home = () => {
   const [searchInput, setSearchInput] = useState("");
   const [sortSelectInput, setSortSelectInput] = useState("name");
   const [showUserForm, setShowUserForm] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     const fetchUsers = async () => {
       const users = await getAllUsers();
+      if (users == null) {
+        setLoading(false);
+      }
       setUsers(users);
+      setLoading(false);
     };
     fetchUsers();
   }, []);
@@ -33,42 +38,46 @@ const Home = () => {
       <div className="my-2 p-4 transition-all duration-500 ease-in-out">
         {showUserForm && <AddUserForm setUsers={setUsers} />}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 ">
-        {users
-          .filter((user) => {
-            if (searchInput) {
-              return `${user.firstName} ${user.lastName}`
-                .toLowerCase()
-                .includes(searchInput);
-            } else {
-              return true;
-            }
-          })
-          .sort((a, b) => {
-            let fieldA, fieldB;
-            if (sortSelectInput === "name") {
-              fieldA = `${a.firstName} ${a.lastName}`.toLowerCase();
-              fieldB = `${b.firstName} ${b.lastName}`.toLowerCase();
-            } else if (sortSelectInput === "email") {
-              fieldA = a.email.toLowerCase();
-              fieldB = b.email.toLowerCase();
-            } else if (sortSelectInput === "company") {
-              fieldA = a.company.name.toLowerCase();
-              fieldB = b.company.name.toLowerCase();
-            } else {
-              // Default
-              fieldA = `${a.firstName} ${a.lastName}`.toLowerCase();
-              fieldB = `${a.firstName} ${a.lastName}`.toLowerCase();
-            }
-            // Compare the two fields and return the result
-            if (fieldA < fieldB) return -1;
-            if (fieldA > fieldB) return 1;
-            return 0;
-          })
-          .map((user) => (
-            <UserCard key={user.id} user={user} />
-          ))}
-      </div>
+      {!loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 ">
+          {users
+            .filter((user) => {
+              if (searchInput) {
+                return `${user.firstName} ${user.lastName}`
+                  .toLowerCase()
+                  .includes(searchInput);
+              } else {
+                return true;
+              }
+            })
+            .sort((a, b) => {
+              let fieldA, fieldB;
+              if (sortSelectInput === "name") {
+                fieldA = `${a.firstName} ${a.lastName}`.toLowerCase();
+                fieldB = `${b.firstName} ${b.lastName}`.toLowerCase();
+              } else if (sortSelectInput === "email") {
+                fieldA = a.email.toLowerCase();
+                fieldB = b.email.toLowerCase();
+              } else if (sortSelectInput === "company") {
+                fieldA = a.company.name.toLowerCase();
+                fieldB = b.company.name.toLowerCase();
+              } else {
+                // Default
+                fieldA = `${a.firstName} ${a.lastName}`.toLowerCase();
+                fieldB = `${a.firstName} ${a.lastName}`.toLowerCase();
+              }
+              // Compare the two fields and return the result
+              if (fieldA < fieldB) return -1;
+              if (fieldA > fieldB) return 1;
+              return 0;
+            })
+            .map((user) => (
+              <UserCard key={user.id} user={user} />
+            ))}
+        </div>
+      ) : (
+        <div>Loading...</div>
+      )}
     </Container>
   );
 };
