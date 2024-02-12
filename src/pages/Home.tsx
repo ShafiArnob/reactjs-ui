@@ -21,7 +21,7 @@ const Home = () => {
     };
     fetchUsers();
   }, []);
-  // console.log(typeof sortSelectInput);
+  // console.log(users);
 
   return (
     <Container>
@@ -31,7 +31,7 @@ const Home = () => {
         <AddUserBtn setShowUserForm={setShowUserForm} />
       </div>
       <div className="my-2 p-4 transition-all duration-500 ease-in-out">
-        {showUserForm && <AddUserForm />}
+        {showUserForm && <AddUserForm setUsers={setUsers} />}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 ">
         {users

@@ -1,13 +1,18 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "./ui/button";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { User } from "@/types/user";
-const AddUserForm = () => {
+
+interface AddUserFormProps {
+  setUsers: React.Dispatch<React.SetStateAction<User[]>>;
+}
+
+const AddUserForm: React.FC<AddUserFormProps> = ({ setUsers }) => {
   const [newUser, setNewUser] = useState<User>({});
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(newUser);
+    setUsers((prev) => [...prev, { ...newUser, id: prev.length + 1 }]);
   };
   // console.log(newUser);
 
@@ -51,7 +56,7 @@ const AddUserForm = () => {
             onChange={(e) =>
               setNewUser((prev) => ({
                 ...prev,
-                address: { address: e.target.value, city: prev.address.city },
+                address: { address: e.target.value, city: prev?.address?.city },
               }))
             }
           />
@@ -64,7 +69,7 @@ const AddUserForm = () => {
                 ...prev,
                 address: {
                   city: e.target.value,
-                  address: prev.address.address,
+                  address: prev?.address?.address,
                 },
               }))
             }
