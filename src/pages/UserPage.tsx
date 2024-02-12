@@ -9,13 +9,16 @@ const UserPage = () => {
   const { id } = useParams();
   const [user, setUser] = useState<User>({});
   const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     const fetchUser = async () => {
       const user = await getSingleUser(id as string);
-      if (user == null) {
+
+      if (user?.message) {
         setLoading(false);
+        setIsError(true);
       }
       setUser(user);
       setLoading(false);
@@ -38,7 +41,7 @@ const UserPage = () => {
             </Link>
           </div>
         </div>
-        {!loading ? (
+        {!loading && !isError && (
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 border-2 rounded-2xl p-2 w-10/12 md:2/3 gap-4 border-purple-300">
             <div className="flex justify-center bg-purple-100 rounded-2xl p-2">
               <img src={user?.image} alt="user" className="mb-1" />
@@ -79,9 +82,9 @@ const UserPage = () => {
               </h3>
             </div>
           </div>
-        ) : (
-          <h1>Loading..</h1>
         )}
+        {loading && <div>Loading...</div>}
+        {isError && <div>Users not found</div>}
       </div>
     </Container>
   );

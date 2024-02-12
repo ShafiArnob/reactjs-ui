@@ -14,11 +14,13 @@ const Home = () => {
   const [sortSelectInput, setSortSelectInput] = useState("name");
   const [showUserForm, setShowUserForm] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   useEffect(() => {
     setLoading(true);
     const fetchUsers = async () => {
       const users = await getAllUsers();
       if (users == null) {
+        setIsError(true);
         setLoading(false);
       }
       setUsers(users);
@@ -38,7 +40,7 @@ const Home = () => {
       <div className="my-2 p-4 transition-all duration-500 ease-in-out">
         {showUserForm && <AddUserForm setUsers={setUsers} />}
       </div>
-      {!loading ? (
+      {!loading && !isError && (
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 ">
           {users
             .filter((user) => {
@@ -75,9 +77,9 @@ const Home = () => {
               <UserCard key={user.id} user={user} />
             ))}
         </div>
-      ) : (
-        <div>Loading...</div>
       )}
+      {loading && <div>Loading...</div>}
+      {isError && <div>Users not found</div>}
     </Container>
   );
 };
