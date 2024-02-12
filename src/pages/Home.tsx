@@ -2,6 +2,7 @@ import { getAllUsers } from "@/api/user";
 import AddUserBtn from "@/components/AddUserBtn";
 import AddUserForm from "@/components/AddUserForm";
 import Container from "@/components/Container";
+import Loading from "@/components/Loading";
 import SearchBar from "@/components/SearchBar";
 import { SortUsersSelect } from "@/components/SortUsersSelect";
 import UserCard from "@/components/UserCard";
@@ -13,7 +14,7 @@ const Home = () => {
   const [searchInput, setSearchInput] = useState("");
   const [sortSelectInput, setSortSelectInput] = useState("name");
   const [showUserForm, setShowUserForm] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   useEffect(() => {
     setLoading(true);
@@ -28,7 +29,7 @@ const Home = () => {
     };
     fetchUsers();
   }, []);
-  // console.log(users);
+  console.log(users);
 
   return (
     <Container>
@@ -80,7 +81,11 @@ const Home = () => {
             ))}
         </div>
       )}
-      {loading && <div>Loading...</div>}
+      {loading && (
+        <div className="flex justify-center items-center h-[400px]">
+          <Loading />
+        </div>
+      )}
       {isError && <div>Users not found</div>}
     </Container>
   );

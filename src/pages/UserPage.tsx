@@ -4,6 +4,7 @@ import { User } from "@/types/user";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
+import Loading from "@/components/Loading";
 
 const UserPage = () => {
   const { id } = useParams();
@@ -83,7 +84,11 @@ const UserPage = () => {
             </div>
           </div>
         )}
-        {loading && <div>Loading...</div>}
+        {loading && (
+          <div className="flex justify-center items-center h-[400px]">
+            <Loading />
+          </div>
+        )}
         {isError && <div>Users not found</div>}
       </div>
     </Container>
