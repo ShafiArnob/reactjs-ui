@@ -17,9 +17,9 @@ const AddUserForm: React.FC<AddUserFormProps> = ({ setUsers }) => {
   // console.log(newUser);
 
   return (
-    <div className=" bg-purple-200 rounded-2xl">
+    <div className=" bg-purple-200 rounded-2xl mx-6">
       <div className="px-4 pt-4">
-        <h1 className="text-3xl font-semibold text-purple-600 ">
+        <h1 className="text-2xl md:text-3xl font-semibold text-purple-600 ">
           Add New User
         </h1>
       </div>
@@ -97,7 +97,7 @@ const AddUserForm: React.FC<AddUserFormProps> = ({ setUsers }) => {
         <div className="pt-2">
           <Button
             type="submit"
-            className="bg-purple-500 hover:bg-purple-600 font-semibold h-[39px] w-1/12"
+            className="bg-purple-500 hover:bg-purple-600 font-semibold h-[39px] w-1/12 max-w-[100px] min-w-[80px]"
           >
             Save
           </Button>
