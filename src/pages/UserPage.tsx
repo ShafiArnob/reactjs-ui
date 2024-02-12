@@ -9,6 +9,7 @@ import ErrorMessage from "@/components/ErrorMessage";
 
 const UserPage = () => {
   const { id } = useParams();
+  // @ts-ignore
   const [user, setUser] = useState<User>({});
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);

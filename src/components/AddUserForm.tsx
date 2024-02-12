@@ -8,6 +8,7 @@ interface AddUserFormProps {
 }
 
 const AddUserForm: React.FC<AddUserFormProps> = ({ setUsers }) => {
+  // @ts-ignore
   const [newUser, setNewUser] = useState<User>({});
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
