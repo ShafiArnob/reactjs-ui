@@ -2,6 +2,7 @@ import { getAllUsers } from "@/api/user";
 import AddUserBtn from "@/components/AddUserBtn";
 import AddUserForm from "@/components/AddUserForm";
 import Container from "@/components/Container";
+import ErrorMessage from "@/components/ErrorMessage";
 import Loading from "@/components/Loading";
 import SearchBar from "@/components/SearchBar";
 import { SortUsersSelect } from "@/components/SortUsersSelect";
@@ -90,7 +91,7 @@ const Home = () => {
           <Loading />
         </div>
       )}
-      {isError && <div>Users not found</div>}
+      {isError && <ErrorMessage message="Users not found" />}
     </Container>
   );
 };
