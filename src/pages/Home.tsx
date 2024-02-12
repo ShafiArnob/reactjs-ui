@@ -32,16 +32,16 @@ const Home = () => {
 
   return (
     <Container>
-      <div className="flex justify-center mt-2 p-4 space-x-3 ">
+      <div className="flex justify-center my-6 mt-8 space-x-3 ">
         <SearchBar setSearchInput={setSearchInput} />
         <SortUsersSelect setSortSelectInput={setSortSelectInput} />
         <AddUserBtn setShowUserForm={setShowUserForm} />
       </div>
-      <div className="my-2 p-4 transition-all duration-500 ease-in-out">
+      <div className="transition-all duration-500 ease-in-out mb-6">
         {showUserForm && <AddUserForm setUsers={setUsers} />}
       </div>
       {!loading && !isError && (
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 ">
+        <div className="grid place-content-center grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {users
             .filter((user) => {
               if (searchInput) {
@@ -74,7 +74,9 @@ const Home = () => {
               return 0;
             })
             .map((user) => (
-              <UserCard key={user.id} user={user} />
+              <div key={user.id} className="mx-auto">
+                <UserCard user={user} />
+              </div>
             ))}
         </div>
       )}

@@ -14,7 +14,7 @@ export const SortUsersSelect: React.FC<SortUsersSelectProps> = ({
 }) => {
   return (
     <Select onValueChange={(e) => setSortSelectInput(e)}>
-      <SelectTrigger className="w-[200px] border-2 focus:border-purple-500">
+      <SelectTrigger className="w-[200px] border-2 border-purple-300 focus:border-purple-500">
         <p className="text-sm text-zinc-400">Sort by:</p>
         <SelectValue placeholder="Name" />
       </SelectTrigger>
