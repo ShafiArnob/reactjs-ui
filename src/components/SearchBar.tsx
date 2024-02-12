@@ -10,7 +10,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ setSearchInput }) => {
   };
 
   return (
-    <div className=" w-1/3">
+    <div className="">
       <Input
         className="border-2 border-purple-300 focus-visible:border-purple-500"
         placeholder="Search"

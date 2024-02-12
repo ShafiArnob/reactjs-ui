@@ -33,10 +33,14 @@ const Home = () => {
 
   return (
     <Container>
-      <div className="flex justify-center my-6 mt-8 space-x-3 ">
-        <SearchBar setSearchInput={setSearchInput} />
-        <SortUsersSelect setSortSelectInput={setSortSelectInput} />
-        <AddUserBtn setShowUserForm={setShowUserForm} />
+      <div className="flex md:space-x-4 flex-col md:flex-row justify-center items-center px-6 md:px-0 my-6 mt-8 ">
+        <div className="min-w-[320px] sm:2/4 md:w-1/3">
+          <SearchBar setSearchInput={setSearchInput} />
+        </div>
+        <div className="flex justify-between mt-2 md:justify-center min-w-[320px] space-x-4 ">
+          <SortUsersSelect setSortSelectInput={setSortSelectInput} />
+          <AddUserBtn setShowUserForm={setShowUserForm} />
+        </div>
       </div>
       <div className="transition-all duration-500 ease-in-out mb-6">
         {showUserForm && <AddUserForm setUsers={setUsers} />}
